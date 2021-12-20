@@ -1,0 +1,42 @@
+1) body-parser (express)
+https://github.com/expressjs/body-parser
+Позволяет обрабатывать входящие запросы в свойстве req.body.
+! Однако следует валидировать входящие значения: req.body.foo.toString(), где "foo" может не быть.
+
+2) Multer (express)
+https://www.npmjs.com/package/multer
+Это middleware для фреймворка express для обработки multipart/form-data, нужная в первую очередь при загрузке файлов. 
+
+3) class-transformer
+https://www.npmjs.com/package/class-transformer
+Позволяет сериализовать/десериализовать объекты по специальным критериям.
+Учитывает вложенность объектов, исключение свойств из обработки. Соотносит другие имена JSON-объектов
+со свойствами классов.
+Также позволяет создавать инстансы объектов для работы с методами классов.
+И многое-многое другое.
+
+4) class-validator
+https://github.com/typestack/class-validator
+Использование декораторов и недекоративного подхода для валидации свойств класса.
+Например:
+  @Length(10, 20)
+  title: string;
+Можно настраивать message каждой ошибки:
+  @MinLength(10, {
+    message: 'Title is too short',
+  })
+  @MaxLength(50, {
+    message: 'Title is too long. Maximal length is $constraint1 characters, but actual is $value',
+  })
+  title: string;
+Важно отметить, что $constraint1 является переменной, которая подставляется в сообщение.
+Аналогично этому будет: 
+  @MinLength(10, {
+    message: (args: ValidationArguments) => {
+      if (args.value.length === 1) {
+        return 'Too short, minimum length is 1 character';
+      } else {
+        return 'Too short, minimum length is ' + args.constraints[0] + ' characters';
+      }
+    },
+  })

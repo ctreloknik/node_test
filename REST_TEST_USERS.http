@@ -1,0 +1,35 @@
+// for "REST Client" extension VS Code
+
+GET http://127.0.0.1:5000/users HTTP/2.1
+
+###
+
+GET http://127.0.0.1:5000/users/id/1 HTTP/2.1
+
+###
+
+GET http://127.0.0.1:5000/users/id/0 HTTP/2.1
+
+###
+
+GET http://127.0.0.1:5000/users/id/aaa HTTP/2.1
+
+###
+
+POST http://127.0.0.1:5000/users/ HTTP/2.1
+content-type: application/json
+
+{
+    "name": "eco"
+}
+
+###
+
+POST http://127.0.0.1:5000/users/ HTTP/2.1
+content-type: application/json
+
+{
+    "name": null
+}
+
+###
